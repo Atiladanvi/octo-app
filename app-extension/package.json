@@ -12,6 +12,7 @@
   "bugs": "https://github.com/a2insights/octo-app/issues",
   "homepage": "octo.a2insights.com.br",
   "dependencies": {
+    "axios": "^0.21.1",
     "quasar-ui-octo-app": "latest"
   },
   "engines": {

@@ -10,8 +10,11 @@ function extendConf (conf) {
   // register our boot file
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/register.js')
 
-  // make sure app extension files & ui package gets transpiled
-  conf.build.transpileDependencies.push(/quasar-app-extension-octo-app[\\/]src/)
+  // make sure axios boot file is registered
+  conf.boot.push('~quasar-app-extension-octo-app/src/boot/axios.js')
+
+  // make sure boot file transpiles
+  conf.build.transpileDependencies.push(/quasar-app-extension-octo-app[\\/]src[\\/]boot/)
 
   // make sure the stylesheet goes through webpack to avoid SSR issues
   conf.css.push('~quasar-ui-octo-app/src/index.sass')
@@ -25,7 +28,7 @@ module.exports = function (api) {
   api.compatibleWith('@quasar/app', '^1.1.0 || ^2.0.0')
 
   // Uncomment the line below if you provide a JSON API for your component
-  api.registerDescribeApi('Table', '~quasar-ui-octo-app/src/components/Table.json')
+  api.registerDescribeApi('Table', '~quasar-ui-octo-app/src/components/OTable.json')
   // Uncomment the line below if you provide a JSON API for your directive
   api.registerDescribeApi('api-interaction', '~quasar-ui-octo-app/src/directives/apiInteraction.json')
 
