@@ -1,20 +1,20 @@
 import { version } from '../package.json'
 
-import Table from './components/Table'
+import OTable from './components/OTable'
 import ApiInteraction from './directives/ApiInteraction'
 
 export {
   version,
-  Table,
+  OTable,
   ApiInteraction
 }
 
 export default {
   version,
-  Table,
+  OTable,
   ApiInteraction,
   install (Vue) {
-    Vue.component(Table.name, Table)
+    Vue.component(OTable.name, OTable)
     Vue.directive(ApiInteraction.name, ApiInteraction)
   }
 }
