@@ -1,14 +1,13 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-full.svg"
-    >
-  </q-page>
+  <Table v-api_interaction="true" />
 </template>
 
 <script>
+
+import Table from 'quasar-ui-octo-app'
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  com: [Table]
 }
 </script>
