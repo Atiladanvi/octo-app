@@ -13,7 +13,7 @@
   "homepage": "octo.a2insights.com.br",
   "dependencies": {
     "axios": "^0.21.1",
-    "quasar-ui-octo-app": "latest"
+    "quasar-ui-octo-app": "^0.0.1"
   },
   "engines": {
     "node": ">= 8.9.0",
