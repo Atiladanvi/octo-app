@@ -1,19 +1,22 @@
 import axios from 'axios'
 import qs from 'qs'
-import mapHeaders from 'quasar-ui-octo-app/src/support/mapHeaders'
-import headersDefaults from 'quasar-ui-octo-app/src/support/headersDefaults'
+import headersDefaults from '../support/headersDefaults'
+import mapHeaders from "../support/mapHeaders";
 
 export default ({ store, Vue }) => {
     const api = axios.create({
         paramsSerializer: params => {
             return qs.stringify(params, { arrayFormat: 'repeat' })
         },
+        baseURL: Vue.prototype.$apiUri
     })
 
     // Set instance
     Vue.prototype.$axios = axios
     Vue.prototype.$http = api
 
+    const mergedHeaders = [...headersDefaults(), ...Vue.prototype.$headers]
+
     // Map headers
-    mapHeaders(api, headersDefaults)
+    mapHeaders(api.defaults.headers.common,  mergedHeaders)
 }
