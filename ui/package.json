@@ -36,12 +36,18 @@
     "quasar": "^1.0.0",
     "rimraf": "^3.0.0",
     "rollup": "^2.33.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-vue": "^5.1.0",
     "rtlcss": "^2.6.1",
     "sass": "^1.29.0",
     "uglify-es": "^3.3.9",
+    "vue-template-compiler": "^2.6.12",
     "zlib": "^1.0.5"
   },
   "browserslist": [
     "last 1 version, not dead, ie >= 11"
-  ]
+  ],
+  "dependencies": {
+    "quasar-app-extension-octo-app" : "0.0.1"
+  }
 }

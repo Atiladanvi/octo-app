@@ -5,10 +5,11 @@ const requester = function (method, route, dataQuery) {
     if (method !== 'post' && method !== 'put') {
         dataQuery = { params: dataQuery }
     }
-
     return new Promise((resolve, reject) => {
         return Vue.prototype.$http[method](route, dataQuery)
             .then( response => {
+                response.body = response.data
+                delete response.data
                 resolve(response)
             })
             .catch(error => {
