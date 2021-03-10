@@ -12,6 +12,7 @@ function extendConf (conf) {
 
   // make sure axios boot file is registered
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/axios.js')
+  conf.boot.push('~quasar-app-extension-octo-app/src/boot/ziggy.js')
 
   // make sure boot file transpiles
   conf.build.transpileDependencies.push(/quasar-app-extension-octo-app[\\/]src[\\/]boot/)
