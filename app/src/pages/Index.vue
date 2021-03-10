@@ -1,13 +1,13 @@
 <template>
-  <Table v-api_interaction="true" />
+  <OTable/>
 </template>
 
 <script>
 
-import Table from 'quasar-ui-octo-app'
+import OTable from 'quasar-ui-octo-app'
 
 export default {
   name: 'PageIndex',
-  com: [Table]
+  com: [OTable]
 }
 </script>
