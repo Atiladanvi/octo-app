@@ -32,10 +32,7 @@
             <q-input
               id="user-name"
               v-model.trim="data.body.name"
-              :error="schema.name.error"
-              type="text"
-              label="Nome do usuário"
-              value="">
+             >
               <template v-slot:error>
                 {{ schema.name.invalid }}
               </template>
@@ -43,22 +40,14 @@
             <q-input
               id="email"
               v-model.trim="data.body.email"
-              :error="schema.email.error"
-              :disabled="schema.email.disabled"
-              type="email"
-              label="E-mail"
-              value="">
+            >
               <template v-slot:error>
                 {{ schema.email.invalid }}
               </template>
             </q-input>
             <q-input
               id="password"
-              v-model="data.body.password"
-              :error="schema.password.error"
-              type="password"
-              label="Senha"
-              value="">
+            >
               <template v-slot:error>
                 {{ schema.password.invalid }}
               </template>
@@ -66,10 +55,7 @@
             <q-input
               id="confirmPassword"
               v-model="data.body.password_confirmation"
-              :error="schema.password.error"
-              type="password"
-              label="Confirmação de senha"
-              value="">
+            >
               <template v-slot:error>
                 {{ schema.password.invalid }}
               </template>
@@ -77,14 +63,12 @@
           </q-card-section>
           <q-card-actions>
             <q-btn
-              label="Confirmar"
               class="full-width q-mb-sm"
               color="primary"
               :loading="loading"
               type="submit"
             />
             <q-btn
-              label="Cancelar"
               class="full-width"
               color="red"
               :loading="loading"

@@ -19,30 +19,18 @@
             <q-input
               id="email"
               v-model.trim="data.body.email"
-              type="email"
-              label="E-mail"
-              :error="validCredentials"
-              :rules="[val => !!val || 'O campo email é obrigatório']"
               lazy-rules
               autofocus
-              value=""/>
+            />
             <q-input
               id="password"
               v-model="data.body.password"
-              type="password"
-              :rules="[val => !!val || 'O campo senha é obrigatório']"
-              :error="validCredentials"
-              label="Senha"
               lazy-rules
-              value="">
-              <template v-slot:error>
-                Email ou senha incorretos !
-              </template>
+            >
             </q-input>
           </q-card-section>
           <q-card-actions>
             <q-btn
-              label="Login"
               class="full-width"
               color="primary"
               :loading="loading"
