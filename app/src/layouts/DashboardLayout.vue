@@ -14,34 +14,12 @@
           {{ appName }}
         </q-toolbar-title>
         <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
-          <q-select
-            v-if="organizacao"
-            label-color="white"
-            borderless
-            v-model="organizacao"
-            :options="organizacoes"
-            dense
-            hide-dropdown-icon
-            options-dense>
-            <template v-slot:prepend>
-              <div class="row items-center no-wrap">
-                <q-icon color="white" class="q-mr-sm" name="fas fa-building" />
-                <q-icon class="lg-hide xl-hide md-hide sm-hide" color="white" name="unfold_more" size="16px" style="margin-left: -2px" />
-              </div>
-            </template>
-            <template v-slot:selected>
-              <span class="xs-hide mobile-hide text-white">{{ organizacao ? organizacao.nome : '' }}</span>
-            </template>
-            <template v-slot:append>
-              <q-btn dense class="xs-hide mobile-hide" color="white" flat icon="unfold_more" />
-            </template>
-          </q-select>
           <q-btn
             round dense flat
             borderless
             @click="toggleDarkMode()"
           >
-            <q-icon :name="darkMode ? 'brightness_low' : 'brightness_high'" />
+            <q-icon :name="$q.dark.mode ? 'brightness_low' : 'brightness_high'" />
           </q-btn>
           <q-btn round dense flat icon="notifications">
             <q-badge v-if="noReads.length > 0" color="red" floating>{{ noReads.length }}</q-badge>
@@ -129,7 +107,7 @@
       :width="250"
       :breakpoint="600"
     >
-      <app-menu></app-menu>
+      <o-sidebar></o-sidebar>
     </q-drawer>
     <q-page-container>
       <router-view/>
@@ -154,18 +132,15 @@
 
 <script>
 
-import AppMenu from 'components/AppMenu'
+import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
 import { requester } from 'quasar-app-extension-octo-app/src/support'
-import hasOrganization from '../mixins/hasOrganization'
-import hasDarkMode from '../mixins/hasDarkMode'
 import { version } from '../../package.json'
 
 export default {
   name: 'DashboardLayout',
   components: {
-    AppMenu
+    OSidebar
   },
-  mixins: [ hasOrganization, hasDarkMode ],
   data () {
     return {
       version: version,
@@ -199,14 +174,20 @@ export default {
       get () {
         return !this.$q.dark.mode ? 'bg-teal-1' : 'bg-teal-10'
       }
+    },
+    darkMode: {
+      get () {
+        return this.$store.state.settings.darkMode
+      },
+      set (val) {
+        return this.$store.commit('settings/setDarkMode', val)
+      }
     }
   },
   mounted () {
     this.$q.dark.set(this.darkMode)
     const self = this
-    if (this.organizacao) {
-      this.$store.dispatch('notifications/get')
-    }
+    this.$store.dispatch('notifications/get')
     const channel = this.$pusher.subscribe(`private-user-notification.${this.user.id}`)
     channel.bind(`user.notification`, ({ notifications }) => {
       self.notifications = notifications

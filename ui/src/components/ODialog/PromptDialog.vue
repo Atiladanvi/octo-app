@@ -34,11 +34,11 @@
 
 <script>
 
-import Error400 from '../pages/Error400'
-import Error404 from '../pages/Error404'
-import Error500 from '../pages/Error500'
-import Error406 from '../pages/Error406'
-import Error401 from '../pages/Error401'
+import Error400 from '../../../../app/src/pages/Error400'
+import Error404 from '../../../../app/src/pages/Error404'
+import Error500 from '../../../../app/src/pages/Error500'
+import Error406 from '../../../../app/src/pages/Error406'
+import Error401 from '../../../../app/src/pages/Error401'
 
 export default {
   components: { Error401, Error406, Error500, Error404, Error400 },

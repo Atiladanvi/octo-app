@@ -63,7 +63,7 @@
 
 <script>
 
-import JsonPrettyPrint from '../../components/JsonPrettyPrint'
+import JsonPrettyPrint from 'quasar-ui-octo-app/src/components/OJsonPrettyPrint/OJsonPrettyPrint'
 import { requester } from 'quasar-app-extension-octo-app/src/support'
 import JsonEditor from 'vue2-jsoneditor'
 

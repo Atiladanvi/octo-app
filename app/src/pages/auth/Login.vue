@@ -66,13 +66,10 @@
 </template>
 
 <script>
-
-import hasForm from '../../mixins/hasForm'
 import { Platform } from 'quasar'
 
 export default {
   name: 'Login',
-  mixins: [ hasForm ],
   data () {
     return {
       model: {
@@ -100,9 +97,8 @@ export default {
         .then(() => {
           this.loading = false
           this.$router.push('/painel')
-        }).catch(error => {
+        }).finally(() => {
           this.loading = false
-          this.displayErrors(error)
         })
     }
   }

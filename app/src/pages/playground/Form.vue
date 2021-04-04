@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'ContatoForm',
+  name: 'Form',
   props: {
     auth: {
       type: Object,

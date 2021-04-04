@@ -6,6 +6,7 @@
       <img
         src="~assets/sad.svg"
         style="width:30vw;max-width:150px;"
+        alt="sad"
       >
     </p>
     <h4 class="text-h4 q-pa-none q-ma-none"><strong>(406)</strong></h4>

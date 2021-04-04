@@ -7,7 +7,7 @@
           <q-card-actions>
             <q-btn-group>
               <q-btn
-                @click="$router.push({ name: 'parceiros.index' })"
+                @click="$router.push({ name: 'route.index' })"
                 flat
                 color="grey-7"
                 icon="remove_red_eye"
@@ -15,7 +15,7 @@
                 round
               />
               <q-btn
-                @click="$router.push({ name: 'parceiros.index' })"
+                @click="$router.push({ name: 'route.index' })"
                 flat
                 color="grey-7"
                 icon="list"
@@ -23,7 +23,7 @@
                 round
               />
               <q-btn
-                @click="$router.push({ name: 'parceiros.index' })"
+                @click="$router.push({ name: 'route.index' })"
                 flat
                 color="grey-7"
                 icon="add"
@@ -34,20 +34,18 @@
           </q-card-actions>
         </q-card-section>
         <pre>{{ $props }}</pre>
-        <contato-form v-bind="$props"></contato-form>
+        <o-form v-bind="$props"></o-form>
       </q-card>
     </div>
   </q-page>
-
 </template>
 
 <script>
-
-import ContatoForm from './Form'
+import OForm from './Form'
 
 export default {
   name: 'CreateContato',
-  components: { ContatoForm },
+  components: { OForm },
   props: {
     auth: {
       type: Object,

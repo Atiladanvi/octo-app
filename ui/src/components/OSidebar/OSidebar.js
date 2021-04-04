@@ -7,13 +7,11 @@ import {
   QList
 } from 'quasar'
 
-import Menu from 'assets/menu.js'
-import './AppMenu.sass'
-import hasOrganization from '../mixins/hasOrganization'
+import Menu from 'app/src/assets/menu.js'
+import './OSidebar.sass'
 
 export default {
-  name: 'AppMenu',
-  mixins: [ hasOrganization ],
+  name: 'OSidebar',
   watch: {
     $route (route) {
       this.showMenu(this.$refs[route.path])
@@ -77,11 +75,6 @@ export default {
       }
 
       attrs.style = path !== this.$route.path ? 'color: black' : ''
-
-      if (!this.organizacao && menu.middleware === 'juOrg') {
-        attrs.disabled = true
-        delete props.to
-      }
 
       return h(QItem, {
         ref: path,

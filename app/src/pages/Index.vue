@@ -1,12 +1,11 @@
 <template>
-  <q-page class="q-p-md flex-center">
-  </q-page>
+  <q-page class="q-p-md flex-center"/>
 </template>
 
 <script>
 
 export default {
-  name: 'PageIndex',
+  name: 'Index',
   data () {
     return {}
   }
