@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-// import example from './module-example'
+import auth from './auth'
+import notifications from './notifications'
+import VuexPersistence from 'vuex-persist'
+import settings from './settings'
 
 Vue.use(Vuex)
 
@@ -15,15 +17,13 @@ Vue.use(Vuex)
  */
 
 export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
+  return new Vuex.Store({
     modules: {
-      // example
+      auth,
+      notifications,
+      settings
     },
-
-    // enable strict mode (adds overhead!)
-    // for dev mode only
-    strict: process.env.DEBUGGING
+    plugins: [new VuexPersistence().plugin],
+    strict: process.env.DEV
   })
-
-  return Store
 }
