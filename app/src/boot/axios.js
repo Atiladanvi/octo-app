@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
-import mapHeaders from '../support/mapHeaders'
 import headers from '../router/headers'
+import { mapHeaders } from 'quasar-app-extension-octo-app/src/support'
 
 export default ({ store, Vue }) => {
   const api = axios.create({

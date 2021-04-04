@@ -1,24 +1,12 @@
-import requester from '../../support/requester'
-import { API_ROUTE_LOGOUT } from './consts'
+import { requester } from 'quasar-app-extension-octo-app/src/support'
+import { API_ROUTE_LOGOUT, API_ROUTE_LOGIN } from './consts'
 
 export function login ({ commit }, credentials) {
   return new Promise((resolve, reject) => {
-    requester('post', 'auth/login', credentials)
+    requester('post', API_ROUTE_LOGIN, credentials)
       .then((response) => {
         commit('initSession', response.body.data)
         resolve(resolve)
-      }).catch(error => {
-        reject(error)
-      })
-  })
-}
-
-export function register ({ commit }, data) {
-  return new Promise((resolve, reject) => {
-    requester('post', 'auth/register', data)
-      .then((response) => {
-        commit('initSession', response.body.data)
-        resolve(response)
       }).catch(error => {
         reject(error)
       })

@@ -21,8 +21,6 @@ module.exports = function (/* ctx */) {
     boot: [
       'i18n',
       'axios',
-      'pusher',
-      'ziggy',
       'form',
       'event',
       'moment'

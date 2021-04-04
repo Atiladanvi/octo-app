@@ -1,4 +1,4 @@
-import requester from '../../support/requester'
+import { requester } from 'quasar-app-extension-octo-app/src/support'
 
 export function get ({ commit }) {
   return requester('get', 'notifications')

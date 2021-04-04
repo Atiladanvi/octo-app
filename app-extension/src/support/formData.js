@@ -1,4 +1,4 @@
-export function objectToFormData (object, formData = new FormData(), parent = null) {
+export default function objectToFormData (object, formData = new FormData(), parent = null) {
   if (object === null || object === 'undefined' || object.length === 0) {
     return formData.append(parent, object)
   }

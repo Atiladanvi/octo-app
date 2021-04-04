@@ -99,8 +99,8 @@
 <script>
 
 import headers from '../router/headers'
-import requester from '../support/requester'
-import bytesToSize from '../support/bytesToSize'
+import { requester } from 'quasar-app-extension-octo-app/src/support'
+import bytesToSize from 'quasar-app-extension-octo-app/src/support/bytesToSize'
 import hasResource from '../mixins/hasResource'
 import hasTable from '../mixins/hasTable'
 

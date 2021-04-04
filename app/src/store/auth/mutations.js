@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import sleep from '../../support/sleep'
+import sleep from 'quasar-app-extension-octo-app/src/support/sleep'
 
 export function user (state, user) {
   state.user = user

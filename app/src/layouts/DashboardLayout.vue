@@ -155,7 +155,7 @@
 <script>
 
 import AppMenu from 'components/AppMenu'
-import requester from '../support/requester'
+import { requester } from 'quasar-app-extension-octo-app/src/support'
 import hasOrganization from '../mixins/hasOrganization'
 import hasDarkMode from '../mixins/hasDarkMode'
 import { version } from '../../package.json'

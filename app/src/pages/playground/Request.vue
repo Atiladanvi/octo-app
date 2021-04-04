@@ -52,7 +52,7 @@
         <div class="row q-py-lg q-px-lg">
           <div class="col">
             <h5 class="q-my-sm">Response</h5>
-            <json-pretty-print :data="props"/>
+            <json-pretty-print :data="$props"/>
           </div>
         </div>
       </q-card>
@@ -64,7 +64,7 @@
 <script>
 
 import JsonPrettyPrint from '../../components/JsonPrettyPrint'
-import requester from '../../support/requester'
+import { requester } from 'quasar-app-extension-octo-app/src/support'
 import JsonEditor from 'vue2-jsoneditor'
 
 export default {
@@ -88,7 +88,7 @@ export default {
       requester(this.method, this.endPoint)
         .then(response => {
           this.props = response.body.components
-          this.params = response.body.components['playground.index'].pagination
+          this.params = response.body.components.listarContatosTable.pagination
         })
     }
   }
