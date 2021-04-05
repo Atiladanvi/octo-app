@@ -18,22 +18,31 @@
           <q-card-section>
             <q-input
               id="email"
-              v-model.trim="data.body.email"
-              lazy-rules
+              v-model.trim="model.email"
+              type="email"
+              label="E-mail"
+              :error="schema.email.error"
               autofocus
-            />
+              value=""/>
             <q-input
               id="password"
-              v-model="data.body.password"
-              lazy-rules
-            >
+              v-model="model.password"
+              type="password"
+              autocomplete="on"
+              :error="schema.password.error"
+              label="Senha"
+              value="">
+              <template v-slot:error>
+                Email ou senha incorretos !
+              </template>
             </q-input>
           </q-card-section>
           <q-card-actions>
             <q-btn
+              label="Login"
               class="full-width"
               color="primary"
-              :loading="loading"
+              :disable="loading"
               type="submit"
             />
           </q-card-actions>
@@ -57,20 +66,26 @@
 </template>
 
 <script>
+import { Platform } from 'quasar'
+
 export default {
   name: 'Login',
   data () {
     return {
-      validCredentials: false,
-      lang: {
-        auth: {}
+      model: {
+        email: '',
+        password: '',
+        device_name: Platform.userAgent
       },
-      data: {
-        body: {
-          email: '',
-          password: ''
+      schema: {
+        email: {
+          disabled: false,
+          error: false
         },
-        rememberMe: false
+        password: {
+          disabled: false,
+          error: false
+        }
       },
       loading: false
     }
@@ -78,15 +93,12 @@ export default {
   methods: {
     onLogin () {
       this.loading = true
-      this.$store.dispatch('auth/login', this.data.body)
+      this.$store.dispatch('auth/login', this.model)
         .then(() => {
           this.loading = false
-          window.location.replace('/')
-        }).catch(error => {
+          this.$router.push('/painel')
+        }).finally(() => {
           this.loading = false
-          if (error.response.status === 401) {
-            this.validCredentials = true
-          }
         })
     }
   }

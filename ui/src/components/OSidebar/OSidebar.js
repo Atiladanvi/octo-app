@@ -7,12 +7,11 @@ import {
   QList
 } from 'quasar'
 
-import Menu from 'assets/menu.js'
-import './AppMenu.sass'
+import Menu from 'app/src/assets/menu.js'
+import './OSidebar.sass'
 
 export default {
-  name: 'AppMenu',
-
+  name: 'OSidebar',
   watch: {
     $route (route) {
       this.showMenu(this.$refs[route.path])
@@ -21,16 +20,14 @@ export default {
 
   methods: {
     showMenu (comp) {
-      // eslint-disable-next-line no-void
       if (comp !== void 0 && comp !== this) {
         this.showMenu(comp.$parent)
-        // eslint-disable-next-line no-void
         comp.show !== void 0 && comp.show()
       }
     },
 
     getDrawerMenu (h, menu, path, level) {
-      // eslint-disable-next-line no-void
+      path = path[0] === '/' ? path.split('//')[0] : path
       if (menu.children !== void 0) {
         return h(
           QExpansionItem,
@@ -50,7 +47,6 @@ export default {
           menu.children.map(item => this.getDrawerMenu(
             h,
             item,
-            // eslint-disable-next-line no-void
             path + (item.path !== void 0 ? '/' + item.path : ''),
             level + 1
           ))
@@ -69,7 +65,6 @@ export default {
 
       if (menu.external === true) {
         Object.assign(props, {
-          // eslint-disable-next-line no-void
           to: void 0,
           clickable: true,
           tag: 'a'
@@ -79,7 +74,7 @@ export default {
         attrs.target = '_blank'
       }
 
-      attrs.style = ''
+      attrs.style = path !== this.$route.path ? 'color: black' : ''
 
       return h(QItem, {
         ref: path,
@@ -87,20 +82,18 @@ export default {
         attrs,
         staticClass: 'app-menu-entry non-selectable'
       }, [
-        // eslint-disable-next-line no-void
         menu.icon !== void 0
           ? h(QItemSection, {
             props: { avatar: true }
-          }, [h(QIcon, { props: { name: menu.icon } })])
+          }, [ h(QIcon, { props: { name: menu.icon } }) ])
           : null,
 
-        h(QItemSection, [menu.name]),
+        h(QItemSection, [ menu.name ]),
 
-        // eslint-disable-next-line no-void
         menu.badge !== void 0
           ? h(QItemSection, {
             props: { side: true }
-          }, [h(QBadge, [menu.badge])])
+          }, [ h(QBadge, [ menu.badge ]) ])
           : null
       ])
     }
