@@ -5,7 +5,12 @@ import objectToFormData from './formData'
 const requester = function (method, route, dataQuery) {
   method = method.toLowerCase()
 
-  if (method !== 'get' && method !== 'delete' && method !== 'put') {
+  if (method === 'put') {
+    dataQuery._method = 'put'
+    method = 'post'
+  }
+
+  if (method !== 'get' && method !== 'delete') {
     dataQuery = objectToFormData(dataQuery)
   }
 
