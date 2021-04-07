@@ -2,24 +2,24 @@ import Vue from 'vue'
 import { Dialog } from 'quasar'
 import objectToFormData from './formData'
 
-const requester = function (method, route, dataQuery) {
+const requester = function (method, route, formData = {}) {
   method = method.toLowerCase()
 
   if (method === 'put') {
-    dataQuery._method = 'put'
+    formData._method = 'put'
     method = 'post'
   }
 
   if (method !== 'get' && method !== 'delete') {
-    dataQuery = objectToFormData(dataQuery)
+    formData = objectToFormData(formData)
   }
 
   if (method === 'get') {
-    dataQuery = { params: dataQuery }
+    formData = { params: formData }
   }
 
   return new Promise((resolve, reject) => {
-    Vue.prototype.$http[method](route, dataQuery)
+    Vue.prototype.$http[method](route, formData)
       .then(
         response => {
           response.body = response.data
