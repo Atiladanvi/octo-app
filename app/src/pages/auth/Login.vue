@@ -1,67 +1,71 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
-  <q-page-container>
-    <q-page class="flex flex-center">
-      <q-card
-        square
-        style="width: 350px; padding:40px; padding-bottom: 60px"
-      >
-        <q-card-section>
-          <div class="text-h4">
-            Login
-          </div>
-        </q-card-section>
-        <q-form
-          class="q-gutter-md"
-          @submit="onLogin()"
-        >
-          <q-card-section>
-            <q-input
-              id="email"
-              v-model.trim="model.email"
-              type="email"
-              label="E-mail"
-              :error="schema.email.error"
-              autofocus
-              value=""/>
-            <q-input
-              id="password"
-              v-model="model.password"
-              type="password"
-              autocomplete="on"
-              :error="schema.password.error"
-              label="Senha"
-              value="">
-              <template v-slot:error>
-                Email ou senha incorretos !
-              </template>
-            </q-input>
-          </q-card-section>
-          <q-card-actions>
-            <q-btn
-              label="Login"
-              class="full-width"
-              color="primary"
-              :disable="loading"
-              type="submit"
-            />
-          </q-card-actions>
-        </q-form>
-        <div class="row content-around q-pa-sm">
-          <div class="col">
-            <router-link to="/recuperar-senha">
-              <a>Esqueceu a senha ?</a>
-            </router-link>
-          </div>
-          <div class="col text-right">
-            <router-link to="/register">
-              <a>Cadastre-se</a>
-            </router-link>
-          </div>
+    <q-page-container>
+      <q-page class="flex flex-center">
+        <div class="column">
+          <h3 class="text-h3 text-center text-blue-6 q-my-lg text-weight-thin">{{ appName }}</h3>
+          <q-card
+            class="q-pa-md"
+            style="width: 400px"
+          >
+            <q-card-section class="q-py-none">
+              <div class="text-h5  text-weight-thin text-blue-5">
+                Acesse a sua conta
+              </div>
+            </q-card-section>
+            <q-form
+              :disabled="loading"
+              @submit="onLogin()"
+            >
+              <q-inner-loading :showing="loading">
+                <q-spinner size="50px" color="primary" />
+              </q-inner-loading>
+              <q-card-section>
+                <q-input
+                  id="email"
+                  v-model.trim="model.email"
+                  type="email"
+                  label="E-mail"
+                  :error="schema.email.error"
+                  autofocus
+                  value="">
+                  <template v-slot:error>
+                    {{ schema.email.invalid }}
+                  </template>
+                </q-input>
+                <q-input
+                  id="password"
+                  v-model="model.password"
+                  type="password"
+                  autocomplete="on"
+                  :error="schema.password.error"
+                  label="Senha"
+                  value="">
+                  <template v-slot:error>
+                    {{ schema.password.invalid }}
+                  </template>
+                </q-input>
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn :disable="loading" class="full-width bg-blue-6" color="primary" label="ENTRAR" type="submit"/>
+              </q-card-actions>
+            </q-form>
+            <div class="row content-around q-pa-sm">
+              <div class="col">
+                <router-link to="/recuperar-senha">
+                  <a>Esqueceu a senha?</a>
+                </router-link>
+              </div>
+              <div class="col text-right">
+                <router-link to="/registro">
+                  <a>Não tem uma conta?</a>
+                </router-link>
+              </div>
+            </div>
+          </q-card>
         </div>
-      </q-card>
-    </q-page>
-  </q-page-container>
+      </q-page>
+    </q-page-container>
   </q-layout>
 </template>
 
@@ -72,6 +76,7 @@ export default {
   name: 'Login',
   data () {
     return {
+      appName: process.env.VUE_APP_NAME,
       model: {
         email: '',
         password: '',
