@@ -14,6 +14,8 @@ function extendConf (conf) {
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/axios.js')
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/ziggy.js')
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/pusher.js')
+  conf.boot.push('~quasar-app-extension-octo-app/src/boot/118n.js')
+  conf.boot.push('~quasar-app-extension-octo-app/src/boot/moment.js')
 
   // make sure boot file transpiles
   // conf.build.transpileDependencies.push(/quasar-app-extension-octo-app[\\/]src[\\/]boot/)

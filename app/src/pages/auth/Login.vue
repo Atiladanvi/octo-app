@@ -26,11 +26,11 @@
                   v-model.trim="model.email"
                   type="email"
                   label="E-mail"
-                  :error="schema.email.error"
+                  :error="errors.email.error"
                   autofocus
                   value="">
                   <template v-slot:error>
-                    {{ schema.email.invalid }}
+                    {{ errors.email.invalid }}
                   </template>
                 </q-input>
                 <q-input
@@ -38,11 +38,11 @@
                   v-model="model.password"
                   type="password"
                   autocomplete="on"
-                  :error="schema.password.error"
+                  :error="errors.password.error"
                   label="Senha"
                   value="">
                   <template v-slot:error>
-                    {{ schema.password.invalid }}
+                    {{ errors.password.invalid }}
                   </template>
                 </q-input>
               </q-card-section>
@@ -82,14 +82,22 @@ export default {
         password: '',
         device_name: Platform.userAgent
       },
-      schema: {
+      errors: {
         email: {
-          disabled: false,
-          error: false
+          error: true,
+          invalid: null
         },
         password: {
-          disabled: false,
-          error: false
+          error: true,
+          invalid: null
+        }
+      },
+      schema: {
+        email: {
+          disabled: false
+        },
+        password: {
+          disabled: false
         }
       },
       loading: false
@@ -102,7 +110,12 @@ export default {
         .then(() => {
           this.loading = false
           this.$router.push('/painel')
-        }).finally(() => {
+        })
+        .catch((errors) => {
+          console.log(errors.response.data.errors)
+          this.errors = errors.response.data.errors
+        })
+        .finally(() => {
           this.loading = false
         })
     }
