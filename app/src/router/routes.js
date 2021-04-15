@@ -19,21 +19,8 @@ const ifAuthenticated = (to, from, next) => {
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/DashboardLayout.vue'),
-    beforeEnter: ifAuthenticated,
-    redirect: '/painel',
-    children: [
-      {
-        path: 'painel',
-        meta: { title: 'Painel' },
-        name: 'painel',
-        component: () => import('pages/Index.vue')
-      },
-      {
-        path: 'playground',
-        component: () => import('pages/playground/Request.vue')
-      }
-    ]
+    component: () => import('quasar-ui-octo-app/src/layouts/DashboardLayout'),
+    beforeEnter: ifAuthenticated
   },
 
   // Always leave this as last one,

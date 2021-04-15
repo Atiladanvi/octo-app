@@ -25,11 +25,12 @@
             <q-badge v-if="noReads.length > 0" color="red" floating>{{ noReads.length }}</q-badge>
             <q-menu>
               <q-list style="min-width: 150px">
-                <span v-if="notifications.length > 0" class="text-h6 q-ml-md">Notificações</span>
-                <h6 v-else class="q-ml-sm q-mr-sm q-mt-sm q-mb-sm">Sem notificações</h6>
+                <span v-if="notifications.length > 0" class="text-h6 q-ml-md">{{ $t('notifications') }}</span>
+                <h6 v-else class="text-center q-ml-sm q-mr-sm q-mt-sm q-mb-sm">{{ $t('empty') }}</h6>
                 <div
+                  v-for="(notification, index) in notifications"
                   v-bind:key="index"
-                  v-for="(notification, index) in notifications">
+                >
                   <q-item
                     style="min-width: 250px"
                     :active="notification.read_at === null"
@@ -42,7 +43,7 @@
                     </q-item-section>
 
                     <q-item-section side top>
-                      <q-item-label caption>há {{ notification.created_at |  moment("from", "now", true) }}</q-item-label>
+                      <q-item-label caption>há {{ notification.created_at }}</q-item-label>
                       <q-icon v-if="notification.read_at === null" name="album" color="blue" />
                     </q-item-section>
                   </q-item>
@@ -58,8 +59,8 @@
             </div>
             <q-menu auto-close>
               <q-list dense style="min-width: 150px">
-                <q-item clickable to="/contrato/create" class="GL__menu-link">
-                  <q-item-section>New object</q-item-section>
+                <q-item clickable class="GL__menu-link">
+                  <q-item-section>----</q-item-section>
                 </q-item>
                 <q-separator />
               </q-list>
@@ -78,17 +79,17 @@
               <q-separator />
               <q-separator />
               <q-item disable clickable class="GL__menu-link">
-                <q-item-section>Profile</q-item-section>
+                <q-item-section> {{ $t('profile') }}</q-item-section>
               </q-item>
               <q-separator />
               <q-item disable clickable class="GL__menu-link">
-                <q-item-section>Help</q-item-section>
+                <q-item-section>{{ $t('help') }}</q-item-section>
               </q-item>
               <q-item disable clickable class="GL__menu-link">
-                <q-item-section>Settings</q-item-section>
+                <q-item-section>{{ $t('settings') }}</q-item-section>
               </q-item>
               <q-item  @click="logout()" clickable class="GL__menu-link">
-                <q-item-section>Logout</q-item-section>
+                <q-item-section>{{ $t('logout') }}</q-item-section>
               </q-item>
             </q-list>
           </q-menu>
@@ -131,13 +132,12 @@
 </template>
 
 <script>
-
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
 import { requester } from 'quasar-app-extension-octo-app/src/support'
 import { version } from '../../package.json'
 
 export default {
-  name: 'DashboardLayout',
+  name: 'AppDashboardLayout',
   components: {
     OSidebar
   },
@@ -253,7 +253,6 @@ export default {
     &__menu-link:hover
       background: #0366d6
       color: white
-    &__menu-link-signed-in
     &__menu-link-status
       &:hover
         & > div

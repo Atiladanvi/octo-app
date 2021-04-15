@@ -17,7 +17,7 @@
     "quasar": "^1.15.9",
     "validator": "^12.1.0",
     "vue-chartjs": "^3.5.0",
-    "vue-i18n": "^8.18.2",
+    "vue-i18n": "^8.24.3",
     "vue-moment": "^4.1.0",
     "vue2-jsoneditor": "^1.0.6",
     "vuex-persist": "^3.1.3"
