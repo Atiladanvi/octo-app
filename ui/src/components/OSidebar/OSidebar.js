@@ -7,8 +7,8 @@ import {
   QList
 } from 'quasar'
 
-import Menu from 'app/src/assets/menu.js'
 import './OSidebar.sass'
+import Vue from "vue";
 
 export default {
   name: 'OSidebar',
@@ -17,7 +17,6 @@ export default {
       this.showMenu(this.$refs[route.path])
     }
   },
-
   methods: {
     showMenu (comp) {
       if (comp !== void 0 && comp !== this) {
@@ -25,7 +24,6 @@ export default {
         comp.show !== void 0 && comp.show()
       }
     },
-
     getDrawerMenu (h, menu, path, level) {
       path = path[0] === '/' ? path.split('//')[0] : path
       if (menu.children !== void 0) {
@@ -100,7 +98,7 @@ export default {
   },
 
   render (h) {
-    return h(QList, { staticClass: 'app-menu' }, Menu.map(
+    return h(QList, { staticClass: 'app-menu' }, Vue.prototype.$oSidebarMenu.map(
       item => this.getDrawerMenu(h, item, item.disabled ? '' : '/' + item.path, 0)
     ))
   },

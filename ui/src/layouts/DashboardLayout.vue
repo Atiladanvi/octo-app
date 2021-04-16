@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header class="q-header-ju" height-hint="61.59">
+    <q-header class="q-header-octo-app" height-hint="61.59">
       <q-toolbar class="q-py-sm q-px-md">
         <q-btn
           flat
@@ -112,18 +112,8 @@
     </q-drawer>
     <q-page-container>
       <router-view/>
-      <q-page-sticky position="bottom-right" :offset="[5, 5]">
-        <q-fab
-          icon="settings"
-          direction="up"
-          push
-          color="primary"
-        >
-          <q-fab-action to="/playground" color="primary" icon="send" />
-        </q-fab>
-      </q-page-sticky>
     </q-page-container>
-    <q-footer class="sm-hide xs-hide q-footer-ju"  height-hint="61.59">
+    <q-footer class="sm-hide xs-hide q-footer-octo-app"  height-hint="61.59">
       <q-toolbar>
         <div class="absolute-center">Copyright © {{ new Date().getFullYear() }} | {{ version }}</div>
       </q-toolbar>

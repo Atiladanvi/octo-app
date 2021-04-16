@@ -1,34 +1,34 @@
 <template>
   <QTable
-      :grid="grid"
-      table-header-class="gt-sm"
-      v-bind:style="[ loading ? { opacity: 0.5, 'pointer-events' : 'none' } : {} ]"
-      :data="Odata"
-      :columns="columns"
-      :loading="loading"
-      :filter="filter"
-      :hide-header="Odata.length === 0"
-      :pagination.sync="Opagination"
-      :pagination-label="paginationLabel"
-      :selected.sync="selected"
-      :rows-per-page-options="[5, 10, 15, 25]"
-      @request="fetch"
-      :hide-bottom="false"
+    table-header-class="gt-sm"
+    :grid="grid"
+    v-bind:style="[ loading ? { opacity: 0.5, 'pointer-events' : 'none' } : {} ]"
+    :data="Odata"
+    :columns="columns"
+    :loading="loading"
+    :filter="filter"
+    :hide-header="Odata.length === 0"
+    :pagination.sync="Opagination"
+    :pagination-label="paginationLabel"
+    :selected.sync="selected"
+    :rows-per-page-options="OrowsPerPageOptions"
+    @request="fetch"
+    :hide-bottom="false"
   >
     <template v-slot:body-cell-actions="props">
       <q-td :props="props">
         <q-btn-group push>
           <q-btn
-              color="grey-7 col"
-              v-for="(action, index) in props.row.actions"
-              :disable="action.disabled"
-              :icon="action.icon"
-              :key="index"
-              @click.stop="acting(props.row, action)"
-              size="12px"
-              flat
-              dense
-              round
+            color="grey-7 col"
+            v-for="(action, index) in props.row.actions"
+            :disable="action.disabled"
+            :icon="action.icon"
+            :key="index"
+            @click.stop="acting(props.row, action)"
+            size="12px"
+            flat
+            dense
+            round
           />
         </q-btn-group>
       </q-td>
@@ -47,8 +47,8 @@
     </template>
   </QTable>
 </template>
-<script>
 
+<script>
 import DeleteDialog from './DeleteDialog.vue'
 import DeleteLoadingModal from './DeleteLoadingDialog.vue'
 import { unbind, requester, deepMerge } from 'quasar-app-extension-octo-app/src/support'
@@ -93,6 +93,12 @@ export default {
       default: function () {
         return {}
       }
+    },
+    rowsPerPageOptions: {
+      type: Array,
+      default: function () {
+        return [5, 10, 15, 20]
+      }
     }
   },
   data ()   {
@@ -101,6 +107,7 @@ export default {
       loading: false,
       Odata:  this.data,
       Ogrid:  this.grid,
+      OrowsPerPageOptions:  this.rowsPerPageOptions,
       Ocolumns: this.columns,
       Opagination: {
         sortBy: null,
@@ -116,6 +123,7 @@ export default {
     data: function (val) {
       this.Odata = val
       this.Opagination = this.pagination
+      this.OrowsPerPageOptions = this.rowsPerPageOptions
     }
   },
   mounted() {

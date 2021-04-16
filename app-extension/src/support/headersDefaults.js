@@ -6,7 +6,7 @@ export default function () {
         },
         {
             'name': 'X-Octo-App-Request',
-            'value': 'XMLHttpRequest'
+            'value': true
         },
     ]
 }

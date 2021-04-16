@@ -5,10 +5,8 @@ export default async ({ Vue }) => {
    await requester('GET', 'ziggy')
     .then(response => {
       const Ziggy = response.body
-      Vue.mixin({
-        methods: {
-          $octo_route: (name, params, absolute, config = Ziggy) => route(name, params, absolute, config)
-        }
-      })
+      Vue.prototype.$octo_route = function (name, params, absolute, config = Ziggy) {
+        return route(name, params, absolute, config)
+      }
     })
 }

@@ -1,6 +1,6 @@
 import { version } from '../package.json'
 
-import OTable from './components/OTable/OTable'
+import OTable from './components/OTable/OTable.vue'
 import ApiInteraction from './directives/ApiInteraction'
 
 export {

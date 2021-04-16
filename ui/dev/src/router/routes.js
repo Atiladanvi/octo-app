@@ -1,17 +1,14 @@
-import pages from './pages'
-
-const children = pages.map(page => ({
-  path: page.path,
-  component: () => import('pages/' + page.file + '.vue')
-}))
-
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MyLayout.vue'),
+    component: () => import('layouts/DevLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ].concat(children)
+      {
+        path: '/table',
+        name: 'app-dev.table.index',
+        component: () => import('pages/OTable.vue')
+      }
+    ]
   }
 ]
 
