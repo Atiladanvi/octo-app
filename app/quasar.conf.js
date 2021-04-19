@@ -86,6 +86,17 @@ module.exports = function (/* ctx */) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
+      env: {
+        VUE_APP_NAME: process.env.VUE_APP_NAME,
+        VUE_APP_DESCRIPTION: process.env.VUE_APP_DESCRIPTION,
+        VUE_APP_AUTHOR: process.env.VUE_APP_AUTHOR,
+        VUE_APP_API_URI: process.env.VUE_APP_API_URI,
+        VUE_APP_API_KEY: process.env.VUE_APP_API_KEY,
+        VUE_APP_PUSHER_APP_KEY: process.env.VUE_APP_PUSHER_APP_KEY,
+        VUE_APP_PUSHER_APP_CLUSTER: process.env.VUE_APP_PUSHER_APP_CLUSTER,
+        VUE_ROUTER_MODE: process.env.VUE_ROUTER_MODE
+      },
+
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
