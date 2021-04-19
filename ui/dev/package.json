@@ -13,11 +13,12 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.8.2",
+    "quasar-app-extension-octo-app": "^0.1.1",
+    "quasar-ui-octo-app": "^0.1.1",
     "core-js": "^3.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^2.0.0",
-    "app-extension": "link:://home/danvizera/Projects/a2insights/octo/octo-app/app-extension/"
+    "@quasar/app": "^2.0.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
