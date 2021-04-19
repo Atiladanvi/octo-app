@@ -109,7 +109,7 @@ export default {
       this.$store.dispatch('auth/login', this.model)
         .then(() => {
           this.loading = false
-          this.$router.push('/painel')
+          this.$router.push('/')
         })
         .catch((errors) => {
           console.log(errors.response.data.errors)
