@@ -3,9 +3,15 @@ export default ({ store, Vue }) => {
   Vue.prototype.$pusherEnabled = false
   Vue.prototype.$oSidebarMenu = [
     {
-      name: 'OTable',
-      icon: 'view_list',
-      path: 'table'
+      name: 'Components',
+      icon: 'widgets',
+      path: 'docs/components',
+      children: [
+        {
+          name: 'OTable',
+          path: 'table',
+        }
+      ]
     },
   ]
 }
