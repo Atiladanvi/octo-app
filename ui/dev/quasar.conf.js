@@ -3,6 +3,8 @@
 
 const path = require('path')
 
+require('dotenv').config()
+
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
@@ -48,6 +50,17 @@ module.exports = function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'history',
+
+      env: {
+        VUE_APP_NAME: process.env.VUE_APP_NAME,
+        VUE_APP_DESCRIPTION: process.env.VUE_APP_DESCRIPTION,
+        VUE_APP_AUTHOR: process.env.VUE_APP_AUTHOR,
+        VUE_APP_API_URI: process.env.VUE_APP_API_URI,
+        VUE_APP_API_KEY: process.env.VUE_APP_API_KEY,
+        VUE_APP_PUSHER_APP_KEY: process.env.VUE_APP_PUSHER_APP_KEY,
+        VUE_APP_PUSHER_APP_CLUSTER: process.env.VUE_APP_PUSHER_APP_CLUSTER,
+        VUE_ROUTER_MODE: process.env.VUE_ROUTER_MODE
+      },
 
       chainWebpack (chain) {
         chain.resolve.alias.merge({
