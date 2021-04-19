@@ -1,6 +1,6 @@
 {
   "name": "quasar-ui-octo-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Atiladanvi <atila.danvi@outlook.com>",
   "description": "UiOctoApp",
   "license": "MIT",
@@ -48,6 +48,6 @@
     "last 1 version, not dead, ie >= 11"
   ],
   "dependencies": {
-    "quasar-app-extension-octo-app" : "0.0.1"
+    "quasar-app-extension-octo-app" : "0.1.1"
   }
 }
