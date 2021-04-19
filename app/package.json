@@ -10,8 +10,9 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "quasar": "^1.15.9",
     "@quasar/extras": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "quasar": "^1.15.9",
     "quasar-app-extension-octo-app": "^0.1.1",
     "quasar-ui-octo-app": "^0.1.1",
     "vue2-jsoneditor": "^1.0.6",

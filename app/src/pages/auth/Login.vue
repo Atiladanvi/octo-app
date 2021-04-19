@@ -26,8 +26,8 @@
                   v-model.trim="model.email"
                   type="email"
                   label="E-mail"
+                  dark
                   :error="errors.email.error"
-                  autofocus
                   value="">
                   <template v-slot:error>
                     {{ errors.email.invalid }}
@@ -84,11 +84,11 @@ export default {
       },
       errors: {
         email: {
-          error: true,
+          error: false,
           invalid: null
         },
         password: {
-          error: true,
+          error: false,
           invalid: null
         }
       },
@@ -112,7 +112,6 @@ export default {
           this.$router.push('/')
         })
         .catch((errors) => {
-          console.log(errors.response.data.errors)
           this.errors = errors.response.data.errors
         })
         .finally(() => {
