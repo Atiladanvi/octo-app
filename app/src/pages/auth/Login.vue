@@ -26,7 +26,6 @@
                   v-model.trim="model.email"
                   type="email"
                   label="E-mail"
-                  dark
                   :error="errors.email.error"
                   value="">
                   <template v-slot:error>
