@@ -34,7 +34,7 @@ export default {
       locationUrl: 'https://github.com/a2insights/octo-app',
       donateUrl: 'https://github.com/sponsors/a2insights',
       docsUrl: 'https://www.octo.docs.a2insights.com.br',
-      demoUrl: 'https://www.octo.app.a2insights.com.br',
+      demoUrl: 'https://www.octo.app.a2insights.com.br'
     }
   }
 }

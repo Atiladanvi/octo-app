@@ -65,7 +65,6 @@
 </template>
 
 <script>
-import { version } from 'ui' // "ui" is aliased in quasar.conf.js
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
 
 export default {
@@ -77,7 +76,7 @@ export default {
     return {
       leftDrawerOpen: false,
       miniState: true,
-      version
+      version: 'version'
     }
   },
   computed: {
@@ -97,7 +96,7 @@ export default {
     toggleDarkMode: function () {
       this.darkMode = !this.darkMode
       this.$q.dark.set(this.darkMode)
-    },
+    }
   }
 }
 </script>

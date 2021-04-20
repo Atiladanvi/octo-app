@@ -7,16 +7,16 @@
 </template>
 
 <script>
-  export default {
-    name: 'OTableAppDevExampleTable',
-    props: {
-      components: {
-        default: function () {
-          return {
-            OTableAppDevExampleTable: {}
-          }
+export default {
+  name: 'OTableAppDevExampleTable',
+  props: {
+    components: {
+      default: function () {
+        return {
+          OTableAppDevExampleTable: {}
         }
       }
     }
   }
+}
 </script>

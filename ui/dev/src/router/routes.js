@@ -22,11 +22,11 @@ const routes = [
             meta: { title: 'OTable' },
             name: 'app-dev.table.index',
             component: () => import('pages/OTable.vue')
-          },
+          }
         ]
       }
     ]
-  },
+  }
 ]
 
 export default routes

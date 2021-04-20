@@ -9,9 +9,9 @@ export default ({ store, Vue }) => {
       children: [
         {
           name: 'OTable',
-          path: 'table',
+          path: 'table'
         }
       ]
-    },
+    }
   ]
 }
