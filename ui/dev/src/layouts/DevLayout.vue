@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated>
+    <q-header elevated class="q-header-octo-app" height-hint="61.59">
       <q-toolbar>
         <q-btn
           flat
@@ -15,6 +15,17 @@
         <q-toolbar-title>
           OctoApp
         </q-toolbar-title>
+        <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
+          <q-btn
+            round
+            dense
+            flat
+            borderless
+            @click="toggleDarkMode()"
+          >
+            <q-icon :name="$q.dark.mode ? 'brightness_low' : 'brightness_high'" />
+          </q-btn>
+        </div>
         <q-btn
           round
           dense
@@ -68,6 +79,25 @@ export default {
       miniState: true,
       version
     }
+  },
+  computed: {
+    darkMode: {
+      get () {
+        return this.$store.state.settings.darkMode
+      },
+      set (val) {
+        return this.$store.commit('settings/setDarkMode', val)
+      }
+    }
+  },
+  mounted () {
+    this.$q.dark.set(this.darkMode)
+  },
+  methods: {
+    toggleDarkMode: function () {
+      this.darkMode = !this.darkMode
+      this.$q.dark.set(this.darkMode)
+    },
   }
 }
 </script>
