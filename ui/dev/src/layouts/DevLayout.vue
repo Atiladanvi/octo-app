@@ -39,6 +39,7 @@
             Home
           </q-tooltip>
         </q-btn>
+        <o-drop-down-language></o-drop-down-language>
       </q-toolbar>
     </q-header>
     <q-drawer
@@ -66,11 +67,13 @@
 
 <script>
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
+import ODropDownLanguage from 'quasar-ui-octo-app/src/components/OLanguageOptions/ODropDownLanguage'
 
 export default {
   name: 'DevLayout',
   components: {
-    OSidebar
+    OSidebar,
+    ODropDownLanguage
   },
   data () {
     return {
