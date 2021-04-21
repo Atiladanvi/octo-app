@@ -1,6 +1,9 @@
+import headers from 'src/router/headers'
+
 export default ({ store, Vue }) => {
-  Vue.prototype.$apiUri = 'http://127.0.0.1:8000/api'
+  Vue.prototype.$apiUri = process.env.VUE_APP_API_URI
   Vue.prototype.$pusherEnabled = false
+  Vue.prototype.$headers = headers(store)
   Vue.prototype.$oSidebarMenu = [
     {
       name: 'Components',
