@@ -5,14 +5,9 @@
         <div class="column">
           <h3 class="text-h3 text-center text-blue-6 q-my-lg text-weight-thin">{{ appName }}</h3>
           <q-card
-            class="q-pa-md"
-            style="width: 400px"
+            class="q-pa-sm q-ma-sm"
+            style="max-width: 520px"
           >
-            <q-card-section class="q-py-none">
-              <div class="text-h5  text-weight-thin text-blue-5">
-                Acesse a sua conta
-              </div>
-            </q-card-section>
             <q-form
               :disabled="loading"
               @submit="onLogin()"
@@ -27,7 +22,7 @@
                   type="email"
                   label="E-mail"
                   :error="errors.email.error"
-                  value="">
+                >
                   <template v-slot:error>
                     {{ errors.email.invalid }}
                   </template>
@@ -38,8 +33,8 @@
                   type="password"
                   autocomplete="on"
                   :error="errors.password.error"
-                  label="Senha"
-                  value="">
+                  label="Password"
+                >
                   <template v-slot:error>
                     {{ errors.password.invalid }}
                   </template>
@@ -51,14 +46,14 @@
             </q-form>
             <div class="row content-around q-pa-sm">
               <div class="col">
-                <router-link to="/recuperar-senha">
-                  <a>Esqueceu a senha?</a>
-                </router-link>
+                <a target="_blank" href="https://octo.a2insights.com.br/forgot-password">
+                  <a>Forgot your password?</a>
+                </a>
               </div>
               <div class="col text-right">
-                <router-link to="/registro">
-                  <a>Não tem uma conta?</a>
-                </router-link>
+                <a target="_blank" href="https://octo.a2insights.com.br/register">
+                  <a>No have registered account?</a>
+                </a>
               </div>
             </div>
           </q-card>
