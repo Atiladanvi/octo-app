@@ -67,7 +67,7 @@
 
 <script>
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
-import ODropDownLanguage from 'quasar-ui-octo-app/src/components/OLanguageOptions/ODropDownLanguage'
+import ODropDownLanguage from 'quasar-ui-octo-app/src/components/DropDowns/ODropDownLanguage'
 
 export default {
   name: 'DevLayout',
