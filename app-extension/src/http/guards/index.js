@@ -1,7 +1,7 @@
 import web from './web'
 import auth from './auth'
 
-export default  {
+export default {
   web,
   auth
 }

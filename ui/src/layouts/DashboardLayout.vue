@@ -23,7 +23,7 @@
             <q-icon :name="$q.dark.mode ? 'brightness_low' : 'brightness_high'" />
           </q-btn>
           <q-btn round dense flat icon="notifications">
-            <q-badge v-if="noReads.length > 0" color="red" floating>{{ noReads.length }}</q-badge>
+            <q-badge v-if="notificationsUnreads.length > 0" color="red" floating>{{ notificationsUnreads.length }}</q-badge>
             <q-menu>
               <q-list style="min-width: 150px">
                 <span v-if="notifications.length > 0" class="text-h6 q-ml-md">{{ $t('notifications') }}</span>
@@ -35,16 +35,16 @@
                   <q-item
                     style="min-width: 250px"
                     :active="notification.read_at === null"
-                    :active-class="bgNotification"
-                    @click="notificationAction(notification)"
-                    clickable>
+                    :active-class="!$q.dark.mode ? 'bg-teal-1' : 'bg-teal-10'"
+                    @click="readNotification(notification)"
+                    clickable
+                  >
                     <q-item-section>
                       <q-item-label>{{notification.data.title}}</q-item-label>
                       <q-item-label caption lines="2">{{notification.data.description}}</q-item-label>
                     </q-item-section>
-
                     <q-item-section side top>
-                      <q-item-label caption>há {{ notification.created_at }}</q-item-label>
+                      <q-item-label caption>{{ notification.created_at }}</q-item-label>
                       <q-icon v-if="notification.read_at === null" name="album" color="blue" />
                     </q-item-section>
                   </q-item>
@@ -154,16 +154,9 @@ export default {
         return this.$store.commit('notifications/setNotifications', val)
       }
     },
-    noReads: {
+    notificationsUnreads: {
       get () {
-        return this.notifications.filter((not) => {
-          return not.read_at === null
-        })
-      }
-    },
-    bgNotification: {
-      get () {
-        return !this.$q.dark.mode ? 'bg-teal-1' : 'bg-teal-10'
+        return this.notifications.filter((not) => not.read_at === null)
       }
     },
     darkMode: {
@@ -177,16 +170,11 @@ export default {
   },
   mounted () {
     const self = this
-    this.$store.dispatch('notifications/get')
+    this.$store.dispatch('notifications/fetch')
     const channel = this.$pusher.subscribe(`private-user-notification.${this.user.id}`)
     channel.bind(`user.notification`, ({ notifications }) => {
       self.notifications = notifications
     })
-    setInterval(() => {
-      self.notifications = self.notifications.map((not) => {
-        return not
-      })
-    }, 60000)
   },
   methods: {
     toggleDarkMode: function () {
@@ -204,51 +192,47 @@ export default {
           }, 1000)
         })
     },
-    notificationAction: function (notification) {
-      if (this.$router.currentRoute.path !== notification.data.action) {
-        this.$router.push(notification.data.action)
-      }
+    readNotification: function (notification) {
       if (!notification.read_at) {
         requester('delete', `notifications/${notification.id}`)
-          .then(() => {
-            this.$store.dispatch('notifications/get')
-          })
+          .then(() => { this.$store.dispatch('notifications/get') })
       }
     }
   }
 }
 </script>
+
 <style lang="sass">
-  .GL
-    &__select-GL__menu-link
-    .default-type
-      visibility: hidden
-      &:hover
-        background: #0366d6
-        color: white
-        .q-item__section--side
-          color: white
-        .default-type
-          visibility: visible
-    &__toolbar-link
-      a
-        color: white
-        text-decoration: none
-        &:hover
-          opacity: 0.7
-    &__menu-link:hover
+.GL
+  &__select-GL__menu-link
+  .default-type
+    visibility: hidden
+    &:hover
       background: #0366d6
       color: white
-    &__menu-link-status
+      .q-item__section--side
+        color: white
+      .default-type
+        visibility: visible
+  &__toolbar-link
+    a
+      color: white
+      text-decoration: none
       &:hover
-        & > div
-          background: white !important
-    &__menu-link-status
-      color: $blue-grey-6
-      &:hover
-        color: $light-blue-9
-    &__toolbar-select.q-field--focused
-      width: 450px !important
-      .q-field__append
-        display: none
+        opacity: 0.7
+  &__menu-link:hover
+    background: #0366d6
+    color: white
+  &__menu-link-status
+    &:hover
+      & > div
+        background: white !important
+  &__menu-link-status
+    color: $blue-grey-6
+    &:hover
+      color: $light-blue-9
+  &__toolbar-select.q-field--focused
+    width: 450px !important
+    .q-field__append
+      display: none
 </style>

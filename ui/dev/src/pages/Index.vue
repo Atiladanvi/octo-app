@@ -11,7 +11,7 @@
           <a :href="locationUrl" target="_blank" rel="noopener" class="doc-link">GitHub <q-icon name="open_in_new"></q-icon></a>
           <a :href="demoUrl" target="_blank" rel="noopener" class="doc-link">Demo <q-icon name="open_in_new"></q-icon></a>
           <div class="row justify-evenly items-center q-ma-sm">
-            <div class="octo" v-html="appDesc"></div>
+            <div class="project-description" v-html="appDesc"></div>
             <div class="byline">{{ byline }} <a :href="bylineTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></div>
           </div>
         </section>
