@@ -1,6 +1,3 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
   profile: 'Profile',
   help: 'Help',
@@ -8,6 +5,11 @@ export default {
   logout: 'Logout',
   notification: 'Notifications',
   empty: 'Empty',
-  failed: 'Action failed',
-  success: 'Action was successful'
+  failed: 'Failed',
+  password: 'Password',
+  e_mail: 'E-Mail',
+  success: 'Action was successful',
+  login: 'Login',
+  create_account: 'Create account',
+  forgot_password: 'Forgot password?'
 }

@@ -1,38 +1,26 @@
-import storeVuex from '../store'
-
-const ifNotAuthenticated = (to, from, next) => {
-  if (!storeVuex().getters['auth/isAuth']) {
-    next()
-    return
-  }
-  next('')
-}
-
-const ifAuthenticated = (to, from, next) => {
-  if (storeVuex().getters['auth/isAuth']) {
-    next()
-    return
-  }
-  next('/login')
-}
-
 const routes = [
   {
     path: '/',
+    name: 'app.dashboard',
     component: () => import('quasar-ui-octo-app/src/layouts/DashboardLayout'),
-    beforeEnter: ifAuthenticated
+    meta: {
+      middleware: 'auth'
+    }
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '/login',
+    name: 'app.login',
     component: () => import('pages/auth/Login.vue'),
-    beforeEnter: ifNotAuthenticated
+    meta: {
+      middleware: 'web'
+    }
   },
   {
     path: '*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('pages/Error404.vue'),
+    meta: {
+      middleware: 'web'
+    }
   }
 ]
 

@@ -3,10 +3,10 @@
     <q-page-container>
       <q-page class="flex flex-center">
         <div class="column">
-          <h3 class="text-h3 text-center text-blue-6 q-my-lg text-weight-thin">{{ appName }}</h3>
+          <h4 class="text-h4 text-center text-primary q-my-md">{{ appName }}</h4>
           <q-card
             class="q-pa-sm q-ma-sm"
-            style="max-width: 520px"
+            style="min-width: 320px"
           >
             <q-form
               :disabled="loading"
@@ -20,39 +20,48 @@
                   id="email"
                   v-model.trim="model.email"
                   type="email"
-                  label="E-mail"
-                  :error="errors.email.error"
+                  required
+                  :label="$t('e_mail')"
+                  :error="errors.email.length > 0"
+                  autofocus
                 >
                   <template v-slot:error>
-                    {{ errors.email.invalid }}
+                    {{ errors.email.toString() }}
                   </template>
                 </q-input>
                 <q-input
                   id="password"
                   v-model="model.password"
+                  required
                   type="password"
+                  :label="$t('password')"
                   autocomplete="on"
-                  :error="errors.password.error"
-                  label="Password"
+                  :error="errors.password.length > 0"
                 >
                   <template v-slot:error>
-                    {{ errors.password.invalid }}
+                    {{ errors.password.toString() }}
                   </template>
                 </q-input>
               </q-card-section>
               <q-card-actions align="right">
-                <q-btn :disable="loading" class="full-width bg-blue-6" color="primary" label="ENTRAR" type="submit"/>
+                <q-btn
+                  :label="$t('login')"
+                  color="primary"
+                  class="full-width"
+                  type="submit"
+                  :disable="loading"
+                />
               </q-card-actions>
             </q-form>
             <div class="row content-around q-pa-sm">
               <div class="col">
                 <a target="_blank" href="https://octo.a2insights.com.br/forgot-password">
-                  <a>Forgot your password?</a>
+                  <a>{{ $t('forgot_password') }}</a>
                 </a>
               </div>
               <div class="col text-right">
                 <a target="_blank" href="https://octo.a2insights.com.br/register">
-                  <a>No have registered account?</a>
+                  <a>{{ $t('create_account') }}</a>
                 </a>
               </div>
             </div>
@@ -70,6 +79,7 @@ export default {
   name: 'Login',
   data () {
     return {
+      loading: false,
       appName: process.env.VUE_APP_NAME,
       model: {
         email: '',
@@ -77,36 +87,33 @@ export default {
         device_name: Platform.userAgent
       },
       errors: {
-        email: {
-          error: false,
-          invalid: null
-        },
-        password: {
-          error: false,
-          invalid: null
-        }
-      },
-      schema: {
-        email: {
-          disabled: false
-        },
-        password: {
-          disabled: false
-        }
-      },
-      loading: false
+        email: [],
+        password: []
+      }
     }
+  },
+  computed: {
+    darkMode: {
+      get () {
+        return this.$store.state.settings.darkMode
+      },
+      set (val) {
+        return this.$store.commit('settings/setDarkMode', val)
+      }
+    }
+  },
+  mounted () {
+    this.$q.dark.set(this.darkMode)
   },
   methods: {
     onLogin () {
       this.loading = true
       this.$store.dispatch('auth/login', this.model)
         .then(() => {
-          this.loading = false
           this.$router.push('/')
         })
-        .catch((errors) => {
-          this.errors = errors.response.data.errors
+        .catch((response) => {
+          this.errors = response.body.errors
         })
         .finally(() => {
           this.loading = false

@@ -9,8 +9,7 @@
 function extendConf (conf) {
   // register our boot file
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/register.js')
-
-  // make sure axios boot file is registered
+  // register others boot files
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/axios.js')
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/ziggy.js')
   conf.boot.push('~quasar-app-extension-octo-app/src/boot/pusher.js')

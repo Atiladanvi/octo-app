@@ -18,15 +18,15 @@ const requester = function (method, route, formData = {}) {
     formData = { params: formData }
   }
 
+  function transformResponse(response, r) {
+    response.body = response.data
+    delete response.data
+    r(response)
+  }
+
   return new Promise((resolve, reject) => {
     Vue.prototype.$http[method](route, formData)
-      .then(
-        response => {
-          response.body = response.data
-          delete response.data
-          resolve(response)
-        }
-      )
+      .then(response => { transformResponse(response, resolve) })
       .catch(
         error => {
           if (error.response.status !== 422) {
@@ -36,7 +36,7 @@ const requester = function (method, route, formData = {}) {
               message: error.response.message || error.response.data.message
             })
           }
-          reject(error)
+          transformResponse(error.response, reject)
         }
       )
   })

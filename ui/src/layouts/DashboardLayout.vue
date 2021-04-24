@@ -7,8 +7,9 @@
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
           aria-label="Menu"
+          color="white"
+          :icon="leftDrawerOpen ? 'close' : 'menu'"
         />
         <q-toolbar-title>
           {{ appName }}
@@ -155,7 +156,7 @@ export default {
     },
     noReads: {
       get () {
-        return this.notifications.filter(function (not) {
+        return this.notifications.filter((not) => {
           return not.read_at === null
         })
       }
@@ -175,7 +176,6 @@ export default {
     }
   },
   mounted () {
-    this.$q.dark.set(this.darkMode)
     const self = this
     this.$store.dispatch('notifications/get')
     const channel = this.$pusher.subscribe(`private-user-notification.${this.user.id}`)
@@ -196,16 +196,12 @@ export default {
     logout: function () {
       this.$q.loading.show()
       this.$store.dispatch('auth/logout')
-        .then(() => {
+        .finally(() => {
           this.timer = setTimeout(() => {
-            this.$router.push('/login')
             this.$q.loading.hide()
             this.timer = void 0
+            this.$router.push('/login')
           }, 1000)
-        }).catch(() => {
-          this.$q.loading.hide()
-          this.$router.push('/login')
-          this.timer = void 0
         })
     },
     notificationAction: function (notification) {

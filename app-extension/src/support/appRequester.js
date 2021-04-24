@@ -9,6 +9,5 @@ export default {
           next.props(response.body)()
         })
     }
-    next()
   }
 }
