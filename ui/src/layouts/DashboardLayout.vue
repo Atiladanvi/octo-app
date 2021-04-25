@@ -150,7 +150,7 @@ export default {
         return this.$store.state.notifications.notifications
       },
       set (val) {
-        return this.$store.commit('notifications/setNotifications', val)
+        this.$store.commit('notifications/setNotifications', val)
       }
     },
     noReads: {

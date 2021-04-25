@@ -10,36 +10,35 @@
           aria-label="Menu"
           color="white"
           :icon="leftDrawerOpen ? 'close' : 'menu'"
-        >
-        </q-btn>
+        />
         <q-toolbar-title>
-          OctoApp
+          {{ appName }}
         </q-toolbar-title>
-        <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
-          <q-btn
-            round
-            dense
-            flat
-            borderless
-            @click="toggleDarkMode()"
-          >
-            <q-icon :name="$q.dark.mode ? 'brightness_low' : 'brightness_high'" />
-          </q-btn>
-        </div>
+        <o-drop-down-language></o-drop-down-language>
         <q-btn
           round
           dense
           flat
-          color="white"
+          :icon="$q.dark.mode ? 'brightness_low' : 'brightness_high'"
+          borderless
+          @click="toggleDarkMode()"
+        />
+        <q-btn
+          round
+          dense
+          flat
           icon="home"
           to="/"
+        />
+        <q-btn
+          round
+          dense
+          flat
+          icon="fab fa-github"
+          type="a"
+          href="https://github.com/a2insights/octo-app"
           target="_blank"
-        >
-          <q-tooltip>
-            Home
-          </q-tooltip>
-        </q-btn>
-        <o-drop-down-language></o-drop-down-language>
+        />
       </q-toolbar>
     </q-header>
     <q-drawer
@@ -67,6 +66,7 @@
 
 <script>
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
+import { version } from '../../../package.json'
 import ODropDownLanguage from 'quasar-ui-octo-app/src/components/DropDowns/ODropDownLanguage'
 
 export default {
@@ -77,9 +77,10 @@ export default {
   },
   data () {
     return {
+      version: version,
       leftDrawerOpen: false,
       miniState: true,
-      version: 'version'
+      appName: process.env.VUE_APP_NAME
     }
   },
   computed: {
@@ -91,9 +92,6 @@ export default {
         return this.$store.commit('settings/setDarkMode', val)
       }
     }
-  },
-  mounted () {
-    this.$q.dark.set(this.darkMode)
   },
   methods: {
     toggleDarkMode: function () {
