@@ -1,10 +1,9 @@
 {
   "name": "dev",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The OctoAppDocs",
   "productName": "OctoAppDocs",
   "author": "Atiladanvi <atila.danvi@outlook.com>",
-  "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"

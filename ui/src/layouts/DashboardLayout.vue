@@ -15,6 +15,7 @@
           {{ appName }}
         </q-toolbar-title>
         <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
+          <o-drop-down-language></o-drop-down-language>
           <q-btn
             round dense flat
             borderless
@@ -126,11 +127,13 @@
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
 import { requester } from 'quasar-app-extension-octo-app/src/support'
 import { version } from '../../package.json'
+import ODropDownLanguage from 'quasar-ui-octo-app/src/components/DropDowns/ODropDownLanguage'
 
 export default {
   name: 'AppDashboardLayout',
   components: {
-    OSidebar
+    OSidebar,
+    ODropDownLanguage
   },
   data () {
     return {
@@ -164,7 +167,7 @@ export default {
         return this.$store.state.settings.darkMode
       },
       set (val) {
-        return this.$store.commit('settings/setDarkMode', val)
+        this.$store.commit('settings/setDarkMode', val)
       }
     }
   },

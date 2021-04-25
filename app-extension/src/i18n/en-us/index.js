@@ -6,9 +6,9 @@ export default {
   notification: 'Notifications',
   empty: 'Empty',
   failed: 'Failed',
+  success: 'Successful',
   password: 'Password',
   e_mail: 'E-Mail',
-  success: 'Action was successful',
   login: 'Login',
   create_account: 'Create account',
   forgot_password: 'Forgot password?'
