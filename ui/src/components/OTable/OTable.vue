@@ -9,7 +9,6 @@
     :filter="filter"
     :hide-header="Odata.length === 0"
     :pagination.sync="Opagination"
-    :pagination-label="paginationLabel"
     :selected.sync="selected"
     :rows-per-page-options="OrowsPerPageOptions"
     @request="fetch"
@@ -130,9 +129,6 @@ export default {
     this.Opagination = unbind(this.pagination)
   },
   methods: {
-    paginationLabel () {
-      return `total: ${this.Opagination.rowsNumber} | page ${this.Opagination.page} of ${this.Opagination.pages}`
-    },
     fetch (props) {
       this.loading = true
       requester('GET', this.$octo_route(this.route.name, this.route.params), props.pagination)
