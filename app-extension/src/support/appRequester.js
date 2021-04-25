@@ -1,4 +1,4 @@
-import { requester } from './index';
+import { requester } from './index'
 
 export default {
   async init ({ to, from, next, Vue }) {
@@ -9,6 +9,5 @@ export default {
           next.props(response.body)()
         })
     }
-    next()
   }
 }

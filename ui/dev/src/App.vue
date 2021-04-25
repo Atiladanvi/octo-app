@@ -6,6 +6,9 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    this.$q.dark.set(this.$store.state.settings.darkMode)
+  }
 }
 </script>

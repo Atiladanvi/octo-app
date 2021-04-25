@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import auth from 'quasar-app-extension-octo-app/src/store/auth'
+import notifications from 'quasar-app-extension-octo-app/src/store/notifications'
 import VuexPersistence from 'vuex-persist'
-import settings from './settings'
+import settings from 'quasar-app-extension-octo-app/src/store/settings'
 
 Vue.use(Vuex)
 
@@ -17,6 +19,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   return new Vuex.Store({
     modules: {
+      auth,
+      notifications,
       settings
     },
     plugins: [new VuexPersistence().plugin],

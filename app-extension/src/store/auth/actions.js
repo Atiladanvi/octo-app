@@ -7,7 +7,8 @@ export function login ({ commit }, credentials) {
       .then((response) => {
         commit('initSession', response.body.data)
         resolve(resolve)
-      }).catch(error => {
+      })
+      .catch(error => {
         reject(error)
       })
   })
@@ -15,9 +16,7 @@ export function login ({ commit }, credentials) {
 
 export async function logout ({ commit }) {
   return requester('delete', API_ROUTE_LOGOUT)
-    .then(() => {
-    }).catch(() => {
-    }).finally(() => {
+    .finally(() => {
       commit('resetSession')
     })
 }

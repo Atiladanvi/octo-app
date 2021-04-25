@@ -1,8 +1,8 @@
 {
   "name": "dev",
   "version": "0.1.1",
-  "description": "The OctoApp",
-  "productName": "OctoApp",
+  "description": "The OctoAppDocs",
+  "productName": "OctoAppDocs",
   "author": "Atiladanvi <atila.danvi@outlook.com>",
   "private": true,
   "scripts": {

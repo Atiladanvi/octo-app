@@ -18,27 +18,24 @@ const requester = function (method, route, formData = {}) {
     formData = { params: formData }
   }
 
+  function transformResponse(response, r) {
+    response.body = response.data
+    delete response.data
+    r(response)
+  }
+
   return new Promise((resolve, reject) => {
     Vue.prototype.$http[method](route, formData)
-      .then(
-        response => {
-          response.body = response.data
-          delete response.data
-          resolve(response)
-        }
-      )
-      .catch(
-        error => {
-          if (error.response.status !== 422) {
-            Dialog.create({
-              title: error.message,
-              status: error.response.status,
-              message: error.response.message || error.response.data.message
-            })
-          }
-          reject(error)
-        }
-      )
+      .then(response => { transformResponse(response, resolve) })
+      .catch(error => {
+        if (error.response.status !== 422)
+          Dialog.create({
+            title: error.message,
+            status: error.response.status,
+            message: error.response.message || error.response.data.message
+          })
+        transformResponse(error.response, reject)
+      })
   })
 }
 

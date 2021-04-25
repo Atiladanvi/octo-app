@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from './auth'
-import notifications from './notifications'
+import auth from 'quasar-app-extension-octo-app/src/store/auth'
+import notifications from 'quasar-app-extension-octo-app/src/store/notifications'
 import VuexPersistence from 'vuex-persist'
-import settings from './settings'
+import settings from 'quasar-app-extension-octo-app/src/store/settings'
 
 Vue.use(Vuex)
 
