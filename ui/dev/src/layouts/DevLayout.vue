@@ -66,7 +66,7 @@
 
 <script>
 import OSidebar from 'quasar-ui-octo-app/src/components/OSidebar/OSidebar'
-import { version } from '../../../package.json'
+import { version } from '../../package.json'
 import ODropDownLanguage from 'quasar-ui-octo-app/src/components/DropDowns/ODropDownLanguage'
 
 export default {
