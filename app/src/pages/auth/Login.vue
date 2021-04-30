@@ -98,7 +98,7 @@ export default {
         return this.$store.state.settings.darkMode
       },
       set (val) {
-        return this.$store.commit('settings/setDarkMode', val)
+        this.$store.commit('settings/setDarkMode', val)
       }
     }
   },

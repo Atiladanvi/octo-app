@@ -58,7 +58,7 @@
     </q-page-container>
     <q-footer class="sm-hide xs-hide q-footer-octo-app"  height-hint="61.59">
       <q-toolbar>
-        <div class="absolute-center">Copyright © {{ new Date().getFullYear() }} | Octo v{{ version }} | Quasar v{{ $q.version }}</div>
+        <div class="absolute-center">Copyright © {{ new Date().getFullYear() }} | OctoDocs v{{ version }} | Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-footer>
   </q-layout>

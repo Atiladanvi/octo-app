@@ -23,37 +23,6 @@
           >
             <q-icon :name="$q.dark.mode ? 'brightness_low' : 'brightness_high'" />
           </q-btn>
-          <q-btn round dense flat icon="notifications">
-            <q-badge v-if="notificationsUnreads.length > 0" color="red" floating>{{ notificationsUnreads.length }}</q-badge>
-            <q-menu>
-              <q-list style="min-width: 150px">
-                <span v-if="notifications.length > 0" class="text-h6 q-ml-md">{{ $t('notifications') }}</span>
-                <h6 v-else class="text-center q-ml-sm q-mr-sm q-mt-sm q-mb-sm">{{ $t('empty') }}</h6>
-                <div
-                  v-for="(notification, index) in notifications"
-                  v-bind:key="index"
-                >
-                  <q-item
-                    style="min-width: 250px"
-                    :active="notification.read_at === null"
-                    :active-class="!$q.dark.mode ? 'bg-teal-1' : 'bg-teal-10'"
-                    @click="readNotification(notification)"
-                    clickable
-                  >
-                    <q-item-section>
-                      <q-item-label>{{notification.data.title}}</q-item-label>
-                      <q-item-label caption lines="2">{{notification.data.description}}</q-item-label>
-                    </q-item-section>
-                    <q-item-section side top>
-                      <q-item-label caption>{{ notification.created_at }}</q-item-label>
-                      <q-icon v-if="notification.read_at === null" name="album" color="blue" />
-                    </q-item-section>
-                  </q-item>
-                  <q-separator spaced inset />
-                </div>
-              </q-list>
-            </q-menu>
-          </q-btn>
           <q-btn dense flat>
             <div class="row items-center no-wrap">
               <q-icon name="add" size="20px" />
@@ -117,7 +86,7 @@
     </q-page-container>
     <q-footer class="sm-hide xs-hide q-footer-octo-app"  height-hint="61.59">
       <q-toolbar>
-        <div class="absolute-center">Copyright © {{ new Date().getFullYear() }} | {{ version }}</div>
+        <div class="absolute-center">Copyright © {{ new Date().getFullYear() }} | OctoApp v{{ version }}</div>
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -149,19 +118,6 @@ export default {
         return this.$store.state.auth.user
       }
     },
-    notifications: {
-      get () {
-        return this.$store.state.notifications.notifications
-      },
-      set (val) {
-        this.$store.commit('notifications/setNotifications', val)
-      }
-    },
-    notificationsUnreads: {
-      get () {
-        return this.notifications.filter((not) => not.read_at === null)
-      }
-    },
     darkMode: {
       get () {
         return this.$store.state.settings.darkMode
@@ -170,14 +126,6 @@ export default {
         this.$store.commit('settings/setDarkMode', val)
       }
     }
-  },
-  mounted () {
-    const self = this
-    this.$store.dispatch('notifications/fetch')
-    const channel = this.$pusher.subscribe(`private-user-notification.${this.user.id}`)
-    channel.bind(`user.notification`, ({ notifications }) => {
-      self.notifications = notifications
-    })
   },
   methods: {
     toggleDarkMode: function () {
@@ -194,12 +142,6 @@ export default {
             this.$router.push('/login')
           }, 1000)
         })
-    },
-    readNotification: function (notification) {
-      if (!notification.read_at) {
-        requester('delete', `notifications/${notification.id}`)
-          .then(() => { this.$store.dispatch('notifications/get') })
-      }
     }
   }
 }
